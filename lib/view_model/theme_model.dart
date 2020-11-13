@@ -21,8 +21,7 @@ class ThemeModel with ChangeNotifier {
     _userDarkMode =
         StorageManager.sharedPreferences.getBool(kThemeUserDarkMode) ?? false;
     _themeColor = Colors.primaries[
-            StorageManager.sharedPreferences.getInt(kThemeColorIndex)] ??
-        5;
+            StorageManager.sharedPreferences.getInt(kThemeColorIndex)??5];
     _fontIndex = StorageManager.sharedPreferences.getInt(kFontIndex) ?? 0;
   }
 

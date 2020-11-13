@@ -14,7 +14,7 @@ class LocalModel with ChangeNotifier {
       var value = localValueList[_localIndex].split('-');
       return Locale(value[0], value.length == 2 ? value[1] : '');
     }
-    return Locale('');
+    return null;
   }
 
   switchLocale(int index) {
@@ -24,7 +24,7 @@ class LocalModel with ChangeNotifier {
   }
 
   LocalModel() {
-    _localIndex = StorageManager.sharedPreferences.getInt(kLocalIndex);
+    _localIndex = StorageManager.sharedPreferences.getInt(kLocalIndex)??0;
   }
 
   static String localeName(index, context) {

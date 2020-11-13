@@ -32,6 +32,30 @@ class FadeRouteBuilder extends PageRouteBuilder {
 class SlideTopRouteBuilder extends PageRouteBuilder {
   final Widget page;
 
-
+  SlideTopRouteBuilder(this.page)
+      : super(
+      pageBuilder: (context, animation, secAnimation) => page,
+      transitionDuration: Duration(milliseconds: 800),
+      transitionsBuilder: (context, animation, secAnimation, child) {
+        return SlideTransition(
+          position: Tween<Offset>(
+              begin: Offset(0.0, -1.0), end: Offset(0.0, 0.0))
+              .animate(CurvedAnimation(
+              parent: animation, curve: Curves.fastOutSlowIn)),
+          child: child,
+        );
+      });
 }
 
+class SizeRoute extends PageRouteBuilder {
+  final Widget page;
+
+  SizeRoute(this.page)
+      :super(pageBuilder: (context, animation, secAnimation) => page,
+      transitionDuration: Duration(milliseconds: 800),
+      transitionsBuilder: (context, animation, secAnimation, child) {
+        return ScaleTransition(child: child,
+          scale: Tween(begin: 0.2, end: 1.0).animate(
+              CurvedAnimation(parent: animation, curve: Curves.fastOutSlowIn)),);
+      });
+}

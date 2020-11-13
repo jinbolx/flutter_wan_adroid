@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_wan_android/config/provider_manager.dart';
+import 'package:flutter_wan_android/config/router_manager.dart';
 import 'package:flutter_wan_android/config/storage_manager.dart';
 import 'package:flutter_wan_android/generated/l10n.dart';
 import 'package:flutter_wan_android/view_model/local_model.dart';
@@ -12,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 void main() async {
+  Provider.debugCheckInvalidValueType = null;
   WidgetsFlutterBinding.ensureInitialized();
   await StorageManager.init();
   runApp(MyApp());
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return OKToast(
         child: MultiProvider(
-      providers: providers,
+      providers: independentServices,
       child: Consumer2<ThemeModel, LocalModel>(
         builder: (context, themeModel, localModel, child) {
           return RefreshConfiguration(
@@ -46,6 +48,8 @@ class MyApp extends StatelessWidget {
                 GlobalWidgetsLocalizations.delegate
               ],
               supportedLocales: S.delegate.supportedLocales,
+              onGenerateRoute: Routers.generateRoute,
+              initialRoute: RouteName.splash,
             ),
           );
         },
