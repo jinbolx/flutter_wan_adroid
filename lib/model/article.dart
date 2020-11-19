@@ -1,116 +1,169 @@
-import 'package:flutter_wan_android/utils/string_utils.dart';
+// To parse this JSON data, do
+//
+//     final article = articleFromJson(jsonString);
+
+import 'dart:convert';
+
+Article articleFromJson(String str) => Article.fromJson(json.decode(str));
+
+String articleToJson(Article data) => json.encode(data.toJson());
 
 class Article {
+  Article({
+    this.apkLink,
+    this.audit,
+    this.author,
+    this.canEdit,
+    this.chapterId,
+    this.chapterName,
+    this.collect,
+    this.courseId,
+    this.desc,
+    this.descMd,
+    this.envelopePic,
+    this.fresh,
+    this.id,
+    this.link,
+    this.niceDate,
+    this.niceShareDate,
+    this.origin,
+    this.prefix,
+    this.projectLink,
+    this.publishTime,
+    this.realSuperChapterId,
+    this.selfVisible,
+    this.shareDate,
+    this.shareUser,
+    this.superChapterId,
+    this.superChapterName,
+    this.tags,
+    this.title,
+    this.type,
+    this.userId,
+    this.visible,
+    this.zan,
+  });
+
   String apkLink;
+  int audit;
   String author;
-  /// 2019.10.13 添加分享人,author可能为空
-  String shareUser;
+  bool canEdit;
   int chapterId;
   String chapterName;
   bool collect;
   int courseId;
   String desc;
+  String descMd;
   String envelopePic;
   bool fresh;
   int id;
   String link;
   String niceDate;
+  String niceShareDate;
   String origin;
-  int originId;
   String prefix;
   String projectLink;
   int publishTime;
+  int realSuperChapterId;
+  int selfVisible;
+  int shareDate;
+  String shareUser;
   int superChapterId;
   String superChapterName;
-  List<TagsBean> tags;
+  List<Tag> tags;
   String title;
   int type;
   int userId;
   int visible;
   int zan;
 
+  factory Article.fromJson(Map<String, dynamic> json) => Article(
+    apkLink: json["apkLink"],
+    audit: json["audit"],
+    author: json["author"],
+    canEdit: json["canEdit"],
+    chapterId: json["chapterId"],
+    chapterName: json["chapterName"],
+    collect: json["collect"],
+    courseId: json["courseId"],
+    desc: json["desc"],
+    descMd: json["descMd"],
+    envelopePic: json["envelopePic"],
+    fresh: json["fresh"],
+    id: json["id"],
+    link: json["link"],
+    niceDate: json["niceDate"],
+    niceShareDate: json["niceShareDate"],
+    origin: json["origin"],
+    prefix: json["prefix"],
+    projectLink: json["projectLink"],
+    publishTime: json["publishTime"],
+    realSuperChapterId: json["realSuperChapterId"],
+    selfVisible: json["selfVisible"],
+    shareDate: json["shareDate"],
+    shareUser: json["shareUser"],
+    superChapterId: json["superChapterId"],
+    superChapterName: json["superChapterName"],
+    tags: List<Tag>.from(json["tags"].map((x) => Tag.fromJson(x))),
+    title: json["title"],
+    type: json["type"],
+    userId: json["userId"],
+    visible: json["visible"],
+    zan: json["zan"],
+  );
 
-
-  static Article fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-    Article articleBean = Article();
-    articleBean.apkLink = map['apkLink'];
-    articleBean.author = map['author'];
-    articleBean.shareUser = map['shareUser'];
-    articleBean.chapterId = map['chapterId'];
-//    articleBean.chapterName = map['chapterName'];
-    articleBean.chapterName = StringUtils.urlDecoder(map["chapterName"]);
-    articleBean.collect = map['collect'];
-    articleBean.courseId = map['courseId'];
-//    articleBean.desc = map['desc'];
-    articleBean.desc = StringUtils.urlDecoder(map["desc"]);
-    articleBean.envelopePic = map['envelopePic'];
-    articleBean.fresh = map['fresh'];
-    articleBean.id = map['id'];
-    articleBean.link = map['link'];
-    articleBean.niceDate = map['niceDate'];
-    articleBean.origin = map['origin'];
-    articleBean.originId = map['originId'];
-    articleBean.prefix = map['prefix'];
-    articleBean.projectLink = map['projectLink'];
-    articleBean.publishTime = map['publishTime'];
-    articleBean.superChapterId = map['superChapterId'];
-//    articleBean.superChapterName = map['superChapterName'];
-    articleBean.superChapterName = StringUtils.urlDecoder(map["superChapterName"]);
-    articleBean.tags = List()
-      ..addAll((map['tags'] as List ?? []).map((o) => TagsBean.fromMap(o)));
-    articleBean.title = StringUtils.urlDecoder(map["title"]);
-    articleBean.type = map['type'];
-    articleBean.userId = map['userId'];
-    articleBean.visible = map['visible'];
-    articleBean.zan = map['zan'];
-    return articleBean;
-  }
-
-  Map toJson() => {
-        "apkLink": apkLink,
-        "author": author,
-        "shareUser": shareUser,
-        "chapterId": chapterId,
-        "chapterName": chapterName,
-        "collect": collect,
-        "courseId": courseId,
-        "desc": desc,
-        "envelopePic": envelopePic,
-        "fresh": fresh,
-        "id": id,
-        "link": link,
-        "niceDate": niceDate,
-        "origin": origin,
-        "originId": originId,
-        "prefix": prefix,
-        "projectLink": projectLink,
-        "publishTime": publishTime,
-        "superChapterId": superChapterId,
-        "superChapterName": superChapterName,
-        "tags": tags,
-        "title": title,
-        "type": type,
-        "userId": userId,
-        "visible": visible,
-        "zan": zan,
-      };
+  Map<String, dynamic> toJson() => {
+    "apkLink": apkLink,
+    "audit": audit,
+    "author": author,
+    "canEdit": canEdit,
+    "chapterId": chapterId,
+    "chapterName": chapterName,
+    "collect": collect,
+    "courseId": courseId,
+    "desc": desc,
+    "descMd": descMd,
+    "envelopePic": envelopePic,
+    "fresh": fresh,
+    "id": id,
+    "link": link,
+    "niceDate": niceDate,
+    "niceShareDate": niceShareDate,
+    "origin": origin,
+    "prefix": prefix,
+    "projectLink": projectLink,
+    "publishTime": publishTime,
+    "realSuperChapterId": realSuperChapterId,
+    "selfVisible": selfVisible,
+    "shareDate": shareDate,
+    "shareUser": shareUser,
+    "superChapterId": superChapterId,
+    "superChapterName": superChapterName,
+    "tags": List<dynamic>.from(tags.map((x) => x.toJson())),
+    "title": title,
+    "type": type,
+    "userId": userId,
+    "visible": visible,
+    "zan": zan,
+  };
 }
 
-class TagsBean {
+class Tag {
+  Tag({
+    this.name,
+    this.url,
+  });
+
   String name;
   String url;
 
-  static TagsBean fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-    TagsBean tagsBean = TagsBean();
-    tagsBean.name = map['name'];
-    tagsBean.url = map['url'];
-    return tagsBean;
-  }
+  factory Tag.fromJson(Map<String, dynamic> json) => Tag(
+    name: json["name"],
+    url: json["url"],
+  );
 
-  Map toJson() => {
-        "name": name,
-        "url": url,
-      };
+  Map<String, dynamic> toJson() => {
+    "name": name,
+    "url": url,
+  };
 }

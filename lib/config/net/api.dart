@@ -1,14 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:dio/browser_imp.dart';
+import 'package:dio/native_imp.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_wan_android/utils/platform_utils.dart';
 
 parJson(String json) => compute(jsonDecode, json);
 
-abstract class BaseHttp extends DioForBrowser {
+abstract class BaseHttp extends DioForNative {
   BaseHttp() {
     (transformer as DefaultTransformer).jsonDecodeCallback = parJson;
     interceptors..add(HeadInterceptor());

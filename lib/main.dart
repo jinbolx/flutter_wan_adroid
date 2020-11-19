@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           return RefreshConfiguration(
             hideFooterWhenNotFull: true,
             child: MaterialApp(
-              debugShowCheckedModeBanner: true,
+              debugShowCheckedModeBanner: false,
               theme: themeModel.themeData(),
               darkTheme: themeModel.themeData(platformDarkMode: true),
               locale: localModel.locale,

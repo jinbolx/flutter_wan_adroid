@@ -30,5 +30,5 @@ abstract class ViewStateListModel<T> extends ViewStateModel {
 
   Future<List<T>> loadData({int page});
 
-  onCompleted(List<T> data) {}
+  onCompleted(List<T> data);
 }

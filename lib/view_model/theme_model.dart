@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wan_android/config/storage_manager.dart';
 import 'package:flutter_wan_android/generated/l10n.dart';
-import 'package:flutter_wan_android/ui/theme_helper.dart';
+import 'package:flutter_wan_android/ui/helper/theme_helper.dart';
 
 class ThemeModel with ChangeNotifier {
   static const kThemeColorIndex = 'kThemeColorIndex';

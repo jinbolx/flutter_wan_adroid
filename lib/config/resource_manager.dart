@@ -8,6 +8,7 @@ class ImageHelper {
   static const String imagePrefix = '$baseUrl/uimg/';
 
   static String warpUrl(String url) {
+    print('ImageHelper: $url');
     if (url.startsWith('http')) return url;
     return imagePrefix + url;
   }

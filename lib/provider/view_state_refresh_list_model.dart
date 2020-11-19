@@ -6,14 +6,14 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 abstract class ViewStateRefreshListModel<T> extends ViewStateListModel<T> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
-
+  final PageEntity pageEntity = PageEntity();
   RefreshController get refreshController => _refreshController;
 
   @override
   Future<List<T>> refresh({bool init = false}) async {
     try {
       pageEntity.resetPage();
-      var data = await loadData(page: pageEntity.currentPage);
+      List<T> data = await loadData(page: pageEntity.currentPage);
       if (data.isEmpty) {
         refreshController.refreshCompleted(resetFooterState: true);
         list.clear();
@@ -48,7 +48,7 @@ abstract class ViewStateRefreshListModel<T> extends ViewStateListModel<T> {
   Future<List<T>> loadMore() async {
     try {
       pageEntity.nextPage();
-      var data = await loadData(page: pageEntity.currentPage);
+      List<T> data = await loadData(page: pageEntity.currentPage);
       if (data.isEmpty) {
         refreshController.loadNoData();
       } else {
